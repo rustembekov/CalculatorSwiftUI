@@ -14,18 +14,19 @@ struct CalculatorView: View {
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
     
     var body: some View {
-        ZStack {
-            Color.theme.backgroundCustom
-                .ignoresSafeArea()
-            VStack {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(0..<16) { index in
-                        CalculatorCellView(index: index)
+        VStack {
+            ZStack {
+                Color.theme.backgroundCustom
+                    .ignoresSafeArea()
+                TextField("", text: $vm.count)
+                    .foregroundColor(.white)
+                    .background {
+                        Color.red
                     }
-                }
-                .padding()
             }
-            
+            sectionOperations
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(height: 475)
         }
     }
 }
@@ -33,5 +34,22 @@ struct CalculatorView: View {
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {
         CalculatorView()
+    }
+}
+
+extension CalculatorView {
+    private var sectionOperations: some View {
+        ZStack {
+            Color.theme.background
+            VStack {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    ForEach(0..<20) { index in
+                        CalculatorCellView(button: vm.buttons[index])
+                    }
+                }
+                .padding()
+            }
+            
+        }
     }
 }

@@ -8,21 +8,37 @@
 import SwiftUI
 
 struct CalculatorCellView: View {
-    let index: Int
+    let button: String
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .frame(width: 50, height: 50)
-            .foregroundColor(.blue)
-            .overlay(
-                Text("\(index + 1)")
-                    .foregroundColor(.white)
-            )
+        Button(action: {
+            // Button action
+        }) {
+            Text(button)
+                .font(.custom("SF Pro Display", size: 32))
+                .fontWeight(.medium)
+                .foregroundColor(.black)
+                .frame(width: 72, height: 72)
+                .background(
+                    Circle()
+                        .fill(Color.white)
+                        .shadow(color: Color.theme.gray.opacity(0.5), radius: 10, x: 5, y: 5)
+                        .shadow(color: Color.theme.background.opacity(0.8), radius: 10, x: -5, y: -5)
+                )
+                .overlay(
+                    Circle()
+                        .stroke(Color.black.opacity(0.2), lineWidth: 1)
+                )
+        }
+
     }
 }
 
 struct CalculatorCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CalculatorCellView(index: 1)
+        ZStack {
+            Color.theme.textBackground
+            CalculatorCellView(button: "+")
+        }
     }
 }
