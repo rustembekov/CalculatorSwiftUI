@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    
-
     @StateObject var vm = CalculatorViewModel()
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
     
@@ -18,11 +16,21 @@ struct CalculatorView: View {
             ZStack {
                 Color.theme.backgroundCustom
                     .ignoresSafeArea()
-                TextField("", text: $vm.count)
-                    .foregroundColor(.white)
-                    .background {
-                        Color.red
-                    }
+                
+                VStack {
+                    Spacer()
+                    
+                    Text(vm.inputText)
+                        .font(.custom("SF Pro Display", size: vm.fontSize))
+                        .fontWeight(.medium)
+                        .foregroundColor(.white)
+                        .frame(height: 90)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .background(Color.red)
+                        .cornerRadius(10)
+                        .padding()
+                        
+                }
             }
             sectionOperations
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -41,15 +49,19 @@ extension CalculatorView {
     private var sectionOperations: some View {
         ZStack {
             Color.theme.background
+                .ignoresSafeArea()
             VStack {
                 LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(0..<20) { index in
-                        CalculatorCellView(button: vm.buttons[index])
+                    ForEach(0..<vm.buttons.count, id: \.self) { index in
+                        if(vm.buttons[index].isEmpty) {
+                            Color.clear
+                        } else {
+                            CalculatorCellView(button: vm.buttons[index])
+                        }
                     }
                 }
                 .padding()
             }
-            
         }
     }
 }
