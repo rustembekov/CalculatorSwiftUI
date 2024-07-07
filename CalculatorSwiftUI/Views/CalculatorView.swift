@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    @StateObject var vm = CalculatorViewModel()
-    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+    @StateObject private var vm = CalculatorViewModel()
+    private let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
     
     var body: some View {
         VStack {
@@ -56,7 +56,7 @@ extension CalculatorView {
                         if(vm.buttons[index].isEmpty) {
                             Color.clear
                         } else {
-                            CalculatorCellView(button: vm.buttons[index])
+                            CalculatorCellView(vm: vm, button: vm.buttons[index])
                         }
                     }
                 }

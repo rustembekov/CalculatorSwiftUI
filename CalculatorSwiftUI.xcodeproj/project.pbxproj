@@ -14,6 +14,8 @@
 		FA890DF82C38099400550FDA /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA890DF72C38099400550FDA /* CalculatorView.swift */; };
 		FA890DFA2C38194000550FDA /* CalculatorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA890DF92C38194000550FDA /* CalculatorCellView.swift */; };
 		FA890DFD2C3819F600550FDA /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA890DFC2C3819F600550FDA /* CalculatorViewModel.swift */; };
+		FAD42C1B2C3AFC45000125F2 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD42C1A2C3AFC44000125F2 /* Operation.swift */; };
+		FAD42C1D2C3B06E3000125F2 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD42C1C2C3B06E3000125F2 /* Double.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		FA890DF72C38099400550FDA /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		FA890DF92C38194000550FDA /* CalculatorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCellView.swift; sourceTree = "<group>"; };
 		FA890DFC2C3819F600550FDA /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
+		FAD42C1A2C3AFC44000125F2 /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		FAD42C1C2C3B06E3000125F2 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				FA890DF42C3800D400550FDA /* Color.swift */,
+				FAD42C1A2C3AFC44000125F2 /* Operation.swift */,
+				FAD42C1C2C3B06E3000125F2 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -183,6 +189,8 @@
 				FA890DF52C3800D400550FDA /* Color.swift in Sources */,
 				FA890DE02C37FF6700550FDA /* CalculatorSwiftUIApp.swift in Sources */,
 				FA890DFD2C3819F600550FDA /* CalculatorViewModel.swift in Sources */,
+				FAD42C1B2C3AFC45000125F2 /* Operation.swift in Sources */,
+				FAD42C1D2C3B06E3000125F2 /* Double.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

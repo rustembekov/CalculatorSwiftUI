@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CalculatorCellView: View {
-    @StateObject var vm = CalculatorViewModel()
+    @ObservedObject var vm: CalculatorViewModel
     let button: String
     
     var body: some View {
         Button(action: {
             print("Button is typed: \(button)")
-            self.vm.buttonTapped(button: button)
+            self.vm.buttonTapped(button)
         }) {
             Text(button)
                 .font(.custom("SF Pro Display", size: 32))
@@ -40,7 +40,7 @@ struct CalculatorCellView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.theme.textBackground
-            CalculatorCellView(button: "=")
+            CalculatorCellView(vm: CalculatorViewModel(), button: "=")
         }
     }
 }

@@ -8,18 +8,13 @@
 import SwiftUI
 import Combine
 
-enum Operation {
-    case add, subtract, multiply, divide, none
-}
-
-
 class CalculatorViewModel: ObservableObject {
-    @Published var inputText: String = ""
+    @Published var inputText = "0"
     @Published var fontSize: CGFloat = 80
     
     @Published private var currentNumber = ""
     @Published private var previousNumber = ""
-    @Published private var currentOperation: Operation?
+    @Published private var currentOperation: Operation? = Operation.none
     
     @Published var buttons: [String] = [
         "AC", "±", "%", "÷",
@@ -31,22 +26,22 @@ class CalculatorViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
 
-    
     init() {
         Publishers.CombineLatest($currentNumber, $currentOperation)
             .sink { [weak self] currentNumber, currentOperation in
-                self?.updateDisplay(currentNumber: currentNumber, currentOpearation: currentOperation)
+                self?.updateDisplay(currentNumber: currentNumber, currentOperation: currentOperation)
             }
             .store(in: &cancellables)
     }
     
-    func updateDisplay(currentNumber: String, currentOpearation: Operation?){
+    func updateDisplay(currentNumber: String, currentOperation: Operation?){
         if currentNumber.isEmpty {
+            print("current number is empty")
             inputText = "0"
         } else {
             inputText = currentNumber
+            print("current number is not empty \(currentNumber), inputText: \(inputText)")
         }
-        
     }
     
     func adjustFontSize(_ text: String) {
@@ -71,12 +66,21 @@ class CalculatorViewModel: ObservableObject {
             }
             formattedText.append(character)
         }
-        return formatText(formattedText)
+        return formattedText
     }
     
-    private func inputNumber(button: String) {
-        if currentNumber.count < 9{
-            currentNumber += button
+    private func inputNumber(_ number: String) {
+        if currentNumber.count < 9 {
+            currentNumber += number
+            print("Current number updated to: \(currentNumber)")
+        }
+    }
+    
+    private func inputOperation(_ operation: Operation) {
+        if !currentNumber.isEmpty {
+            previousNumber = currentNumber
+            currentNumber = ""
+            currentOperation = operation
         }
     }
     
@@ -100,7 +104,7 @@ class CalculatorViewModel: ObservableObject {
             return
         }
         
-        inputText = String(res)
+        inputText = res.customFormatted
         currentNumber = inputText
         previousNumber = ""
         currentOperation = Operation.none
@@ -114,20 +118,19 @@ class CalculatorViewModel: ObservableObject {
         inputText = "0"
     }
     
-    func buttonTapped(button: String) {
-        print("Button is: \(button)")
-
+    func buttonTapped(_ button: String) {
+        
         switch button {
-        case "0"..."9":
-            inputNumber(button: button)
+        case "0"..."9", ".":
+            inputNumber(button)
         case "+":
-            currentOperation = .add
+            inputOperation(.add)
         case "-":
-            currentOperation = .subtract
-        case "*":
-            currentOperation = .multiply
-        case "/":
-            currentOperation = .divide
+            inputOperation(.subtract)
+        case "×":
+            inputOperation(.multiply)
+        case "÷":
+            inputOperation(.divide)
         case "=":
             calculate()
         case "AC":
@@ -136,6 +139,4 @@ class CalculatorViewModel: ObservableObject {
             break
         }
     }
-    
 }
-
