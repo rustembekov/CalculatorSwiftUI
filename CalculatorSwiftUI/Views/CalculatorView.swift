@@ -28,6 +28,7 @@ struct CalculatorView: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .background(Color.red)
                         .cornerRadius(10)
+                        .kerning(5)
                         .padding()
                         
                 }

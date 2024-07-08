@@ -16,6 +16,7 @@
 		FA890DFD2C3819F600550FDA /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA890DFC2C3819F600550FDA /* CalculatorViewModel.swift */; };
 		FAD42C1B2C3AFC45000125F2 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD42C1A2C3AFC44000125F2 /* Operation.swift */; };
 		FAD42C1D2C3B06E3000125F2 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD42C1C2C3B06E3000125F2 /* Double.swift */; };
+		FAD42C1F2C3BC356000125F2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD42C1E2C3BC356000125F2 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		FA890DFC2C3819F600550FDA /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		FAD42C1A2C3AFC44000125F2 /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		FAD42C1C2C3B06E3000125F2 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		FAD42C1E2C3BC356000125F2 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				FA890DF42C3800D400550FDA /* Color.swift */,
 				FAD42C1A2C3AFC44000125F2 /* Operation.swift */,
 				FAD42C1C2C3B06E3000125F2 /* Double.swift */,
+				FAD42C1E2C3BC356000125F2 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				FA890DE02C37FF6700550FDA /* CalculatorSwiftUIApp.swift in Sources */,
 				FA890DFD2C3819F600550FDA /* CalculatorViewModel.swift in Sources */,
 				FAD42C1B2C3AFC45000125F2 /* Operation.swift in Sources */,
+				FAD42C1F2C3BC356000125F2 /* String.swift in Sources */,
 				FAD42C1D2C3B06E3000125F2 /* Double.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
