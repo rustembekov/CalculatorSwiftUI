@@ -19,12 +19,12 @@ struct CalculatorCellView: View {
             Text(button)
                 .font(.custom("SF Pro Display", size: 32))
                 .fontWeight(.medium)
-                .foregroundColor(.black)
+                .foregroundColor(Color.theme.textAccent)
                 .frame(width: 72, height: 72)
                 .background(
                     Circle()
-                        .fill(button == "=" ? Color.yellow : Color.white)
-                        .shadow(color: Color.theme.gray.opacity(0.5), radius: 10, x: 5, y: 5)
+                        .fill(button == "=" ? Color.yellow : Color.theme.textBackground)
+                        .shadow(color: Color.theme.textBackground.opacity(0.8), radius: 10, x: 5, y: 5)
                         .shadow(color: Color.theme.background.opacity(0.8), radius: 10, x: -5, y: -5)
                 )
                 .overlay(
@@ -44,3 +44,4 @@ struct CalculatorCellView_Previews: PreviewProvider {
         }
     }
 }
+

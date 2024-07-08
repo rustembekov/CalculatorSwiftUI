@@ -41,6 +41,9 @@ class CalculatorViewModel: ObservableObject {
             inputText = "0"
         } else if currentNumber == "Error" {
             inputText = "Error"
+        } else if currentNumber == "Out of bounds" {
+            inputText = "Out of bounds"
+            fontSize = 40
         } else {
             inputText = setupText(text: currentNumber)
             print("current number is not empty \(currentNumber), inputText: \(inputText)")
@@ -94,7 +97,6 @@ class CalculatorViewModel: ObservableObject {
         switch operation {
         case .add:
             res = previous + current
-            print("Item will be add, previous: \(previous), current: \(current), result: \(res)")
         case .subtract:
             res = previous - current
         case .multiply:
@@ -123,8 +125,12 @@ class CalculatorViewModel: ObservableObject {
         if operation != .divide {
             inputText = formatText(String(res))
         }
-
-        lastOperand = inputText
+        if res > 999_999_999 {
+            currentNumber = "Out of bounds"
+            return
+        }
+        
+        lastOperand = currentNumber
         lastOperation = currentOperation
         
         currentNumber = inputText.replacingOccurrences(of: " ", with: "")
@@ -145,7 +151,6 @@ class CalculatorViewModel: ObservableObject {
         var integerPart = components[0]
         var decimalPart = components.count > 1 ? components[1] : ""
         
-        // Determine number of decimal places based on length of integer part
         let integerLength = integerPart.count
         var decimalPlaces = 0
         
@@ -164,22 +169,18 @@ class CalculatorViewModel: ObservableObject {
             decimalPlaces = 1
         }
         
-        // Truncate decimal part if needed
         if decimalPart.count > decimalPlaces {
             decimalPart = String(decimalPart.prefix(decimalPlaces))
         }
         
-        // Remove trailing zeros from decimal part
         decimalPart = decimalPart.trimmingCharacters(in: CharacterSet(charactersIn: "0"))
         
-        // If decimal part becomes empty after trimming, remove the decimal point
         if decimalPart.isEmpty {
             let formattedNumber = integerPart
         } else {
             let formattedNumber = "\(integerPart).\(decimalPart)"
         }
         
-        // Format the integer part with spaces
         let reversedIntegerPart = String(integerPart.reversed())
         var formattedIntegerPart = ""
         
@@ -224,7 +225,11 @@ class CalculatorViewModel: ObservableObject {
         case .none:
             return
         }
-    
+        if res > 999_999_999 {
+            currentNumber = "Out of bounds"
+            return
+        }
+        
         inputText = res.customFormatted
         currentNumber = inputText.replacingOccurrences(of: " ", with: "")
     }
@@ -249,7 +254,8 @@ class CalculatorViewModel: ObservableObject {
         if var number = currentNumber.asDouble {
             number = number / 100
             currentNumber = number.customFormatted
-            inputText = setupText(text: currentNumber)
+            inputText = currentNumber
+            print("inputText: \(inputText), currentNumber: \(currentNumber)")
         }
     }
 

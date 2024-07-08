@@ -19,18 +19,8 @@ struct CalculatorView: View {
                 
                 VStack {
                     Spacer()
+                    sectionTextInput
                     
-                    Text(vm.inputText)
-                        .font(.custom("SF Pro Display", size: vm.fontSize))
-                        .fontWeight(.medium)
-                        .foregroundColor(.white)
-                        .frame(height: 90)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .background(Color.red)
-                        .cornerRadius(10)
-                        .kerning(5)
-                        .padding()
-                        
                 }
             }
             sectionOperations
@@ -49,7 +39,7 @@ struct CalculatorView_Previews: PreviewProvider {
 extension CalculatorView {
     private var sectionOperations: some View {
         ZStack {
-            Color.theme.background
+            Color.theme.background.opacity(0.1)
                 .ignoresSafeArea()
             VStack {
                 LazyVGrid(columns: columns, spacing: 10) {
@@ -64,5 +54,17 @@ extension CalculatorView {
                 .padding()
             }
         }
+    }
+    
+    private var sectionTextInput: some View {
+        Text(vm.inputText)
+            .font(.custom("SF Pro Display", size: vm.fontSize))
+            .fontWeight(.medium)
+            .foregroundColor(.white)
+            .frame(height: 90)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .cornerRadius(10)
+            .kerning(5)
+            .padding()
     }
 }
